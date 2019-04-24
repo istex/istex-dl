@@ -84,7 +84,11 @@ export default class Form extends React.Component {
     }
 
     characterNumberValidation() {
-        const length = this.state.q.length;
+        const length = this.length;
+        const self = this;
+        const ISTEX = this.state.activeKey === '1'
+            ? this.buildURLFromState(this.state.q, false)
+            : this.buildURLFromState(this.transformIDorARK(), false);
         if (length < characterLimit - 1000) return 'success';
         else if (length <= characterLimit) return 'warning';
         else if (length > characterLimit) return 'error';
